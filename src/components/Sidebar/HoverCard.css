@@ -1,0 +1,53 @@
+.hover-card {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-card-content {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out; 
+  box-shadow: 0 4px 8px rgba(20, 57, 142, 0.438);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 100;
+  white-space: nowrap;
+  /* border: 4px solid rgb(48, 71, 118); */
+}
+
+.hover-card-trigger:hover + .hover-card-content,
+.hover-card-content:hover {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-card-content.right .arrow {
+  top: 10px;
+  right: -8px;
+}
+
+.hover-card-content.right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hover-card-content.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hover-card-content.top {
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+}
+
+.hover-card-content.bottom {
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+}

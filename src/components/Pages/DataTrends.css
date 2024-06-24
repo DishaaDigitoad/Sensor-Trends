@@ -1,0 +1,36 @@
+.details {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 40px; /* Adds space between the containers */
+  padding: 60px; /* Adds padding around the flex container */
+  justify-content: center; /* Center the containers */
+  align-items: center; /* Center the containers horizontally */
+}
+
+.overview-container {
+  box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #f0f0f3;
+  font-family: Arial, sans-serif;
+  color: #020202;
+  width: 100%; 
+  max-width: 600px; /* Optional: limit the maximum width */
+  text-align: center;
+}
+
+.duration-select {
+  margin-bottom: 20px;
+}
+
+/* Mobile screens */
+@media (max-width: 767px) {
+  .details {
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .overview-container {
+    width: calc(100% - 40px); /* One item per row, full width */
+  }
+}
+

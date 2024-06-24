@@ -1,0 +1,32 @@
+.sensor-details {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+  padding: 40px; 
+  justify-content: center; 
+}
+
+.sensor-overview-container {
+  box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f0f0f3;
+  font-family: Arial, sans-serif;
+  color: #333;
+  width: calc(33.33% - 20px); /* Makes sure three items fit per row, considering the gap */
+  text-align: center;
+}
+
+/* Medium screens (tablets, small laptops) */
+@media (max-width: 992px) {
+  .sensor-overview-container {
+    width: calc(50% - 20px); /* Two items per row */
+  }
+}
+
+/* Small screens (phones, smaller tablets) */
+@media (max-width: 768px) {
+  .sensor-overview-container {
+    width: calc(100% - 20px); /* One item per row */
+  }
+}

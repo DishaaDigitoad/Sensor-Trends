@@ -1,0 +1,39 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
+// import { getFirestore } from "firebase/firestore";
+import { getDatabase, ref, onvalue } from "firebase/database";
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+export const googleProvider = new GoogleAuthProvider();
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+// Set persistence
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("Persistence set to local");
+  })
+  .catch((error) => {
+    console.error("Error setting persistence:", error);
+  });
+
+// Export auth after setting persistence
+export { auth, database };
