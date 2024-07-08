@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../authentication/AuthContext";
 import { auth, googleProvider } from "../../firebase-config";
+import { signInWithPopup, signOut } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
 
 const Header = () => {
-  const { user } = useAuth() || {}; // Add a default empty object in case useAuth() is undefined
+  const { user } = useAuth() || {};
   const navigate = useNavigate();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const Header = () => {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      await auth.signOut();
+      await signOut(auth);
       toast.success("Logged out successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -26,7 +26,7 @@ const Header = () => {
         draggable: true,
         progress: undefined,
       });
-      navigate("/"); // Navigate to home after logout
+      navigate("/");
     } catch (error) {
       toast.error(`Error signing out: ${error.message}`, {
         position: "top-right",
@@ -45,7 +45,7 @@ const Header = () => {
   const handleSignUp = async () => {
     setLoading(true);
     try {
-      await auth.signInWithPopup(googleProvider);
+      await signInWithPopup(auth, googleProvider);
       toast.success("Logged in successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -55,7 +55,7 @@ const Header = () => {
         draggable: true,
         progress: undefined,
       });
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       toast.error(`Error signing in with Google: ${error.message}`, {
         position: "top-right",

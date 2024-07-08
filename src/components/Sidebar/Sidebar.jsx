@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./HoverCard";
@@ -6,6 +6,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "./HoverCard";
 const Sidebar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
 
   const handleSensorClick = () => {
     navigate("/sensor");
@@ -14,6 +15,19 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
   const sidebarItems = [
     {
@@ -31,11 +45,6 @@ const Sidebar = () => {
       route: "/share",
       description: "Share the sensor data with others",
     },
-    {
-      text: "Sensor Data",
-      route: "/sensor-data",
-      description: "View detailed sensor data",
-    },
   ];
 
   return (
@@ -46,7 +55,7 @@ const Sidebar = () => {
       >
         <i className="fas fa-bars"></i>
       </div>
-      <nav className={`sidebar ${isOpen ? "open" : "hidden"}`}>
+      <nav ref={sidebarRef} className={`sidebar ${isOpen ? "open" : "hidden"}`}>
         {sidebarItems.map((item, index) => (
           <div key={index} className="sidebar-item">
             <HoverCard>

@@ -9,10 +9,11 @@ import {
 import Home from "./components/Pages/Home";
 import Navigate from "./components/Pages/Navigate";
 import SensorOverview from "./components/Pages/SensorOverview";
-import DataTrends from "./components/Pages/DataTrends";
+import DataTrends from "./components/Pages/Graphs/DataTrends";
 import Share from "./components/Pages/Share";
+import { registerLicense } from "@syncfusion/ej2-base";
 import "./App.css";
-import SensorData from "./api/SensorData.js";
+
 import Error from "./components/Pages/Error.jsx";
 import RouteLayout from "./RouteLayout.jsx";
 import SignupPage from "./authentication/SignupPage.jsx";
@@ -20,12 +21,11 @@ import LoginPage from "./authentication/LoginPage.jsx";
 import SampleLoader from "./components/Pages/SampleLoader.jsx";
 import PrivateRoute from "./authentication/PrivateRoute.js";
 import { AuthProvider } from "./authentication/AuthContext.js";
-
+registerLicense(process.env.REACT_APP_SYNC_LICENSE_KEY);
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a delay to demonstrate the loading state
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -47,7 +47,6 @@ const App = () => {
               <Route path="/sensor-overview" element={<SensorOverview />} />
               <Route path="/data-trends" element={<DataTrends />} />
               <Route path="/share" element={<Share />} />
-              <Route path="/sensor-data" element={<SensorData />} />
               {/* </Route> */}
               <Route path="*" element={<Error />} />
             </Route>

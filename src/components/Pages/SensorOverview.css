@@ -24,9 +24,9 @@
   }
 }
 
-/* Small screens (phones, smaller tablets) */
+
 @media (max-width: 768px) {
   .sensor-overview-container {
-    width: calc(100% - 20px); /* One item per row */
+    width: calc(100% - 20px); 
   }
 }

@@ -1,0 +1,49 @@
+.details {
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+}
+
+.overview-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.overview-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .overview-container {
+    padding: 10px;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+}

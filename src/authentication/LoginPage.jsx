@@ -1,26 +1,27 @@
-import React, { useState } from "react";
-import { auth, googleProvider } from "../firebase-config";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+// src/components/LoginPage.jsx
+import React, { useState, useEffect } from "react";
+import "./Login.css";
+import { auth, googleProvider, firestore } from "../firebase-config";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
-import "./Login.css";
+import { BiArrowBack } from "react-icons/bi";
 
 const LoginPage = () => {
   const [enteredValues, setEnteredValues] = useState({
     email: "",
     password: "",
   });
-
   const [didEdit, setDidEdit] = useState({
     email: false,
     password: false,
   });
-
   const [error, setError] = useState("");
-
-  const { logIn } = useAuth(); // Get logIn function from context
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+  const { logIn } = useAuth();
 
   const emailIsInvalid = didEdit.email && !enteredValues.email.includes("@");
 
@@ -28,16 +29,28 @@ const LoginPage = () => {
     event.preventDefault();
     setError("");
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         enteredValues.email,
         enteredValues.password
       );
-      logIn(userCredential.user); // Log in the user
-      toast.success("You have logged in successfully", {
-        position: "top-center",
-      });
-      navigate("/"); // Redirect to home or another page
+      const userDoc = await getDoc(
+        doc(firestore, "users", userCredential.user.uid)
+      );
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setUserData(userData);
+        logIn(userCredential.user);
+        toast.success("You have logged in successfully", {
+          position: "top-center",
+        });
+        navigate("/");
+      } else {
+        toast.info("No user found with this email. Please sign up.", {
+          position: "top-center",
+        });
+        navigate("/signup");
+      }
     } catch (error) {
       handleFirebaseError(error);
       console.log(error);
@@ -46,21 +59,41 @@ const LoginPage = () => {
 
   const handleFirebaseError = (error) => {
     if (error.code === "auth/user-not-found") {
-      setError("No user found with this email.");
+      toast.info("No user found with this email. Please sign up.", {
+        position: "top-center",
+      });
+      navigate("/signup");
     } else if (error.code === "auth/wrong-password") {
-      setError("Incorrect password.");
+      toast.error("Incorrect password.", {
+        position: "top-center",
+      });
     } else {
-      setError("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.", {
+        position: "top-center",
+      });
     }
   };
+
   const logInWithGoogle = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      logIn(userCredential.user); // Log in the user
-      toast.success("You have logged in successfully", {
-        position: "top-center",
-      });
-      navigate("/"); // Redirect to home or another page
+      const user = userCredential.user;
+
+      const userDoc = await getDoc(doc(firestore, "users", user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setUserData(userData);
+        logIn(user);
+        toast.success("You have logged in successfully", {
+          position: "top-center",
+        });
+        navigate("/");
+      } else {
+        toast.info("No user found with this email. Please sign up.", {
+          position: "top-center",
+        });
+        navigate("/signup");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -96,8 +129,20 @@ const LoginPage = () => {
     setError("");
   }
 
+  useEffect(() => {
+    if (userData) {
+      setEnteredValues({
+        email: userData.email,
+        password: "",
+      });
+    }
+  }, [userData]);
+
   return (
     <form onSubmit={handleSubmit}>
+      <div className="back-arrow" onClick={() => navigate("/")}>
+        <BiArrowBack />
+      </div>
       <h2 className="login-header">Login</h2>
 
       <div className="control-row">
@@ -140,7 +185,7 @@ const LoginPage = () => {
         >
           Reset
         </button>
-        <button type="submit" className="button button-flat" onClick={logIn}>
+        <button type="submit" className="button button-flat">
           Login
         </button>
 

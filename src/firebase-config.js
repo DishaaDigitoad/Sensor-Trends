@@ -6,8 +6,8 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
-// import { getFirestore } from "firebase/firestore";
-import { getDatabase, ref, onvalue } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -25,6 +25,7 @@ const analytics = getAnalytics(app);
 export const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 const database = getDatabase(app);
+const firestore = getFirestore(app);
 
 // Set persistence
 setPersistence(auth, browserLocalPersistence)
@@ -36,4 +37,4 @@ setPersistence(auth, browserLocalPersistence)
   });
 
 // Export auth after setting persistence
-export { auth, database };
+export { auth, database, ref, firestore, onValue };
