@@ -42,12 +42,12 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path="/home" element={<Home />} />
 
-              {/* <Route element={<PrivateRoute />}> */}
+              <Route element={<PrivateRoute />}> 
               <Route path="/navigate" element={<Navigate />} />
               <Route path="/sensor-overview" element={<SensorOverview />} />
               <Route path="/data-trends" element={<DataTrends />} />
               <Route path="/share" element={<Share />} />
-              {/* </Route> */}
+             </Route>
               <Route path="*" element={<Error />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />
