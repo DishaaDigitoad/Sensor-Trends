@@ -10,10 +10,14 @@ import {
   Tooltip,
   Legend,
   Title,
+  TimeScale,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import zoomPlugin from "chartjs-plugin-zoom";
+import "chartjs-adapter-date-fns"; // For date/time handling
 import "./DataTrends.css";
 
+// Register Chart.js components and plugins
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,7 +25,9 @@ ChartJS.register(
   PointElement,
   Tooltip,
   Legend,
-  Title
+  Title,
+  TimeScale,
+  zoomPlugin
 );
 
 const DataTrends = () => {
@@ -50,7 +56,6 @@ const DataTrends = () => {
 
     onValue(sensorDataRef, (snapshot) => {
       const data = snapshot.val();
-      console.log("Fetched data:", data);
       if (data) {
         const labels = [];
         const temperatureData = [];
@@ -58,33 +63,17 @@ const DataTrends = () => {
 
         const currentTime = Date.now();
         const tenSecondsAgo = currentTime - 10000;
-        console.log("Current time:", currentTime);
-        console.log("Ten seconds ago:", tenSecondsAgo);
 
         Object.keys(data).forEach((key) => {
           const entry = data[key];
-          console.log("Data entry:", entry);
-
           const timestamp = entry.timestamp * 1000;
-          console.log("Converted timestamp:", timestamp);
 
           if (timestamp >= tenSecondsAgo) {
-            const date = new Date(timestamp);
-            const formattedTime = date.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            });
-
-            labels.push(formattedTime);
+            labels.push(timestamp);
             temperatureData.push(entry.temperature);
             humidityData.push(entry.humidity);
           }
         });
-
-        console.log("Filtered labels:", labels);
-        console.log("Filtered temperature data:", temperatureData);
-        console.log("Filtered humidity data:", humidityData);
 
         setChartData({
           labels,
@@ -109,12 +98,62 @@ const DataTrends = () => {
     });
   }, []);
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Temperature and Humidity Trends",
+      },
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: "xy",
+        },
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true,
+          },
+          mode: "xy",
+        },
+      },
+    },
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "second",
+          tooltipFormat: "PPpp",
+          displayFormats: {
+            second: "HH:mm:ss",
+          },
+        },
+        title: {
+          display: true,
+          text: "Time",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Value",
+        },
+      },
+    },
+  };
+
   return (
     <div className="details">
       <div className="overview-container">
         <h2>Temperature and Humidity Trends</h2>
         <div className="chart-container">
-          <Line data={chartData} />
+          <Line data={chartData} options={options} />
         </div>
       </div>
     </div>

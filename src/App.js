@@ -7,10 +7,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./components/Pages/Home";
-import Navigate from "./components/Pages/Navigate";
 import SensorOverview from "./components/Pages/SensorOverview";
 import DataTrends from "./components/Pages/Graphs/DataTrends";
-import Share from "./components/Pages/Share";
+// import Share from "./components/Pages/Share";
 import { registerLicense } from "@syncfusion/ej2-base";
 import "./App.css";
 
@@ -43,10 +42,9 @@ const App = () => {
               <Route path="/home" element={<Home />} />
 
               {/* <Route element={<PrivateRoute />}> */}
-              <Route path="/navigate" element={<Navigate />} />
               <Route path="/sensor-overview" element={<SensorOverview />} />
               <Route path="/data-trends" element={<DataTrends />} />
-              <Route path="/share" element={<Share />} />
+              {/* <Route path="/share" element={<Share />} /> */}
               {/* </Route> */}
               <Route path="*" element={<Error />} />
             </Route>

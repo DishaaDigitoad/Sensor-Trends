@@ -40,11 +40,11 @@ const Sidebar = () => {
       route: "/data-trends",
       description: "Graphs and charts",
     },
-    {
-      text: "Share",
-      route: "/share",
-      description: "Share the sensor data with others",
-    },
+    // {
+    //   text: "Share",
+    //   route: "/share",
+    //   description: "Share the sensor data with others",
+    // },
   ];
 
   return (

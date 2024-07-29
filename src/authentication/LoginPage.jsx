@@ -1,4 +1,3 @@
-// src/components/LoginPage.jsx
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { auth, googleProvider, firestore } from "../firebase-config";

@@ -45,19 +45,9 @@ const Header = () => {
   const handleSignUp = async () => {
     setLoading(true);
     try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Logged in successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
-      toast.error(`Error signing in with Google: ${error.message}`, {
+      toast.error(`Error navigating to login page: ${error.message}`, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -70,7 +60,7 @@ const Header = () => {
       setLoading(false);
     }
   };
-
+  
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };

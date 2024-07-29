@@ -1,6 +1,6 @@
 .details {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
   display: flex;
   justify-content: center;
 }
@@ -8,28 +8,31 @@
 .overview-container {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
 .overview-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
 .chart-container {
   position: relative;
   height: 400px;
   width: 100%;
+  transition: transform 0.3s ease;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .overview-container {
     padding: 10px;
+    margin-top: 10px;
   }
 
   .chart-container {
@@ -45,5 +48,43 @@
 
   .chart-container {
     height: 250px;
+  }
+}
+
+/* Landscape mode for smaller screens */
+@media (max-width: 768px) and (orientation: landscape) {
+  .overview-container {
+    padding: 10px;
+  }
+
+  .chart-container {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+  .overview-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+
+/* Rotate the component 90 degrees on smaller width screens */
+@media (max-width: 480px) {
+  .overview-container {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    width: 100vh;
+    height: 100vw;
+    padding-top: 2vh;
+    padding-left: 25vh;
+  }
+
+  .chart-container {
+    height: 1000vw; /* Adjust height according to the rotated width */
   }
 }
