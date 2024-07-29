@@ -42,9 +42,10 @@ const App = () => {
               <Route path="/home" element={<Home />} />
 
               {/* <Route element={<PrivateRoute />}> */}
+              <Route path="/navigate" element={<Navigate />} />
               <Route path="/sensor-overview" element={<SensorOverview />} />
               <Route path="/data-trends" element={<DataTrends />} />
-              {/* <Route path="/share" element={<Share />} /> */}
+              <Route path="/share" element={<Share />} />
               {/* </Route> */}
               <Route path="*" element={<Error />} />
             </Route>
