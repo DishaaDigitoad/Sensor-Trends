@@ -31,7 +31,7 @@
     "three.js": "^0.77.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://github.com/DishaaDigitoad/Sensor-Trends.git",
+  "homepage": "https://github.com/DishaaDigitoad/Sensor-Trends",
   "scripts": {
     "start": "cross-env HOST=0.0.0.0 react-scripts start",
     "build": "react-scripts build",
