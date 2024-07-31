@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/DishaaDigitoad/Sensor-Trends/static/css/main.11ed3f3b.css",
-    "main.js": "/DishaaDigitoad/Sensor-Trends/static/js/main.6821fb42.js",
-    "static/js/453.de05db71.chunk.js": "/DishaaDigitoad/Sensor-Trends/static/js/453.de05db71.chunk.js",
-    "static/media/EarthImage.jpg": "/DishaaDigitoad/Sensor-Trends/static/media/EarthImage.76183d22af78ff37820d.jpg",
-    "index.html": "/DishaaDigitoad/Sensor-Trends/index.html",
-    "main.11ed3f3b.css.map": "/DishaaDigitoad/Sensor-Trends/static/css/main.11ed3f3b.css.map",
-    "main.6821fb42.js.map": "/DishaaDigitoad/Sensor-Trends/static/js/main.6821fb42.js.map",
-    "453.de05db71.chunk.js.map": "/DishaaDigitoad/Sensor-Trends/static/js/453.de05db71.chunk.js.map"
+    "main.css": "/Sensor-Trends/static/css/main.11ed3f3b.css",
+    "main.js": "/Sensor-Trends/static/js/main.b4097b97.js",
+    "static/js/453.de05db71.chunk.js": "/Sensor-Trends/static/js/453.de05db71.chunk.js",
+    "static/media/EarthImage.jpg": "/Sensor-Trends/static/media/EarthImage.76183d22af78ff37820d.jpg",
+    "index.html": "/Sensor-Trends/index.html",
+    "main.11ed3f3b.css.map": "/Sensor-Trends/static/css/main.11ed3f3b.css.map",
+    "main.b4097b97.js.map": "/Sensor-Trends/static/js/main.b4097b97.js.map",
+    "453.de05db71.chunk.js.map": "/Sensor-Trends/static/js/453.de05db71.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.11ed3f3b.css",
-    "static/js/main.6821fb42.js"
+    "static/js/main.b4097b97.js"
   ]
 }
