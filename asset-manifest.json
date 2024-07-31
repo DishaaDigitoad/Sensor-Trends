@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/DishaaDigitoad/Sensor-Trends.git/static/css/main.11ed3f3b.css",
-    "main.js": "/DishaaDigitoad/Sensor-Trends.git/static/js/main.ff232331.js",
-    "static/js/453.de05db71.chunk.js": "/DishaaDigitoad/Sensor-Trends.git/static/js/453.de05db71.chunk.js",
-    "static/media/EarthImage.jpg": "/DishaaDigitoad/Sensor-Trends.git/static/media/EarthImage.76183d22af78ff37820d.jpg",
-    "index.html": "/DishaaDigitoad/Sensor-Trends.git/index.html",
-    "main.11ed3f3b.css.map": "/DishaaDigitoad/Sensor-Trends.git/static/css/main.11ed3f3b.css.map",
-    "main.ff232331.js.map": "/DishaaDigitoad/Sensor-Trends.git/static/js/main.ff232331.js.map",
-    "453.de05db71.chunk.js.map": "/DishaaDigitoad/Sensor-Trends.git/static/js/453.de05db71.chunk.js.map"
+    "main.css": "/static/css/main.11ed3f3b.css",
+    "main.js": "/static/js/main.04384199.js",
+    "static/js/453.de05db71.chunk.js": "/static/js/453.de05db71.chunk.js",
+    "static/media/EarthImage.jpg": "/static/media/EarthImage.76183d22af78ff37820d.jpg",
+    "index.html": "/index.html",
+    "main.11ed3f3b.css.map": "/static/css/main.11ed3f3b.css.map",
+    "main.04384199.js.map": "/static/js/main.04384199.js.map",
+    "453.de05db71.chunk.js.map": "/static/js/453.de05db71.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.11ed3f3b.css",
-    "static/js/main.ff232331.js"
+    "static/js/main.04384199.js"
   ]
 }
