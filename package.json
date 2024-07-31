@@ -1,5 +1,4 @@
 {
-  "homepage": "https://github.com/DishaaDigitoad/Sensor-Trends.git",
   "name": "sensorvisualizer",
   "version": "0.1.0",
   "private": true,
@@ -32,13 +31,13 @@
     "three.js": "^0.77.1",
     "web-vitals": "^2.1.4"
   },
-
+  "homepage": "https://github.com/DishaaDigitoad/Sensor-Trends.git",
   "scripts": {
     "start": "cross-env HOST=0.0.0.0 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && echo > build/.nojekyll",
+    "predeploy": "npm run build && touch build/.nojekyll",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
